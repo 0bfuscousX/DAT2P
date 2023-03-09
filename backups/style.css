@@ -1,0 +1,9 @@
+/*background image*/
+body {
+    background-image: url('https://img.freepik.com/premium-vector/seamless-vector-wallpaper-images-dishes-cooked-grill-fire_621139-40.jpg?w=1380');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+  
+  }
+
