@@ -24,52 +24,68 @@
      <hr color="magenta">
     <form method="post" action="connect.php" >
     <legend style="padding:20px 0; font-size:20px;">Signup:</legend>
-    <label for ="firstName">Enter First Name</label><br>
-    <input type="text" placeholder="First name" id="firstName" name ="firstName"> 
+    <label for ="Name">Enter Name</label><br>
+    <input type="text" placeholder="Name" id="Name" name ="Name"> 
     <br>
-    <label for ="lastName">Enter Last Name</label><br>
-    <input type="text" placeholder="Last name" id="lastName" name ="lastName"> 
+    <label for ="username">Enter Username</label><br>
+    <input type="text" placeholder="Username" id="username" name ="username"> 
     <br>
     <label for ="email">Enter Email</label><br>
-    <input type="text" placeholder="Email" id="email" name ="email"><br>
+    <input type="text" placeholder="Email" id="email" name ="email">
+    <br>
     <label for ="password">Enter Password</label><br>
     <input type="password" placeholder="Password" id="password" name ="password"> 
     <br>
     <label for ="number">Enter Mobile Number</label><br>
-    <input placeholder="03---" id="number" name ="number"><br>
+    <input placeholder="+63" id="number" name ="number">
+    <br>
     <label for ="date">Enter Date of Birth</label><br>
-    <input type="text" placeholder="DD/MM/YY" id="date" name ="date"><br>
+    <input type="text" placeholder="YYYY/DD/MM" id="date" name ="date">
+    <br>
     <label for ="gender">Enter Gender</label><br>
     <input type="text" placeholder="Male/Female/Other" id="gender" name="gender"><br>
     <br><a href="login.html" class="btn btn-primary">Sign Up</a>
     </fielsdet>
     </form>
 
-<?php
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $number = $_POST['number'];
-    $date = $_POST['date'];
-    $gender = $_POST['gender'];
+
+
+	<?php
+    // insert and recording of data	
+	if ($_SERVER["REQUEST_METHOD"] == "POST") 
+	{
+		$servername = "192.168.150.213";
+		$username = "webprogmi211";
+		$password = "j@zzyAngle30";
+		$dbname = "lvlim_MyGuests";
+
+        $Name = $_POST['Name'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $number = $_POST['number'];
+        $date = $_POST['date'];
+        $gender = $_POST['gender'];
 
     // Making Connection with database
 
-    $con = new mysqli('localhost','root','','phpdata');
-    if ($con -> connect_error) {
-    die('Connection failed :'.$conn -> connect_error);
+        $con = new mysqli('localhost','root','','phpdata');
+        if ($con -> connect_error) {
+        die('Connection failed :'.$conn -> connect_error);
+        }
+            else{
+            $stmt = $con->query("INSERT INTO signup(Name, username, email, password, number, date, gender)
+                values(?,?,?,?,?,?,?)");
+            $stmt->bind_param("ssssiss",$Name, $username, $email, $password, 
+            $number, $date, $gender);
+            $stmt->execute();
+            echo "Sign up successful";
+            $stmt->close();
+            $con->close();
+        }
     }
-    else{
-    $stmt = $con->query("INSERT INTO signup(firstName, lastName, email, password, 
-    number, date, gender)
-        values(?,?,?,?,?,?,?)");
-    $stmt->bind_param("ssssiss",$firstName, $lastName, $email, $password, 
-    $number, $date, $gender);
-    $stmt->execute();
-    echo "Sign up successful";
-    $stmt->close();
-    $con->close();
-     }?>
+
+     ?>
+    
     </body>
     </html>
