@@ -1,2 +1,0 @@
-# DAT2P
-DATAMA2 Piratas
