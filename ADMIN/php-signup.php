@@ -23,7 +23,7 @@
      <h2 style="color: rgb(112, 25, 25)">Please fill out the required fields to create your account.</h2>
      <hr color="magenta">
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method="post" action="post">
     <legend style="padding:20px 0; font-size:20px;">Signup:</legend>
     <label for ="Name">Enter Name</label><br>
     <input type="text" placeholder="Name" id="Name" name ="Name"> 
@@ -48,7 +48,7 @@
     <br><a href="login.html" class="btn btn-primary">Sign Up</a>
     </fielsdet>
     </form>
-
+    
     <?php
 	// define variables and set to empty values
     $Name = $username = $email = $password = $number = $date = $gender = "";
@@ -63,17 +63,17 @@
 	  $gender = test_input($_POST["gender"]);
 	}
 
-	function test_input($data) {
-	  $data = trim($data);
-	  $data = stripslashes($data);
-	  $data = htmlspecialchars($data);
-	  return $data;
-	}
-	?>
+        function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+        }
+    ?>
 
-<!--insert and recording of data-->
+    <!--insert and recording of data-->
 
-	<?php
+    <?php
     
 	if ($_SERVER["REQUEST_METHOD"] == "POST") 
 	{
@@ -81,27 +81,32 @@
 		$username = "webprogmi211";
 		$password = "j@zzyAngle30";
 		$dbname = "webprogmi211";
+    
+        
 
     // Making Connection with database
 
         // Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		// Check connection
-		if ($conn->connect_error) {
-		  die("Connection failed: " . $conn->connect_error);
-		}
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        }
 
         $sql = "INSERT INTO lvlim_MyGuests (Name, username, email, password, number, date, gender)
-		VALUES ('$Name', '$username', '$email', '$password', '$number', '$date', '$gender')";
+        VALUES ('$Name', '$username', '$email', '$password', '$number', '$date', '$gender')";
 
-		if ($conn->query($sql) === TRUE) {
-		  echo "<br>Sign up successful!";
+        if ($conn->query($sql) === TRUE) {
+        echo "<br>Sign up successful!";
             } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
             }
-	}
-	$conn->close();
-     ?>
-    
+
+    $conn->close();
+
+    }
+    ?>
+
+
     </body>
     </html>
