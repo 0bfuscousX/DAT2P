@@ -22,7 +22,7 @@
             </div>
      <h2 style="color: rgb(112, 25, 25)">Please fill out the required fields to create your account.</h2>
      <hr color="magenta">
-    <form method="post" action="connect.php" >
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
     <legend style="padding:20px 0; font-size:20px;">Signup:</legend>
     <label for ="Name">Enter Name</label><br>
     <input type="text" placeholder="Name" id="Name" name ="Name"> 
