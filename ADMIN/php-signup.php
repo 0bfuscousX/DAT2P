@@ -80,7 +80,7 @@
 		$servername = "192.168.150.213";
 		$username = "webprogmi211";
 		$password = "j@zzyAngle30";
-		$dbname = "lvlim_MySQL";
+		$dbname = "webprogmi211";
 
     // Making Connection with database
 
