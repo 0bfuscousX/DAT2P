@@ -82,14 +82,6 @@
 		$password = "j@zzyAngle30";
 		$dbname = "lvlim_MySQL";
 
-        $Name = $_POST['Name'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $number = $_POST['number'];
-        $date = $_POST['date'];
-        $gender = $_POST['gender'];
-
     // Making Connection with database
 
         // Create connection
