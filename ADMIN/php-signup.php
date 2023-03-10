@@ -22,7 +22,8 @@
             </div>
      <h2 style="color: rgb(112, 25, 25)">Please fill out the required fields to create your account.</h2>
      <hr color="magenta">
-    <form method="post" action="create" >
+
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <legend style="padding:20px 0; font-size:20px;">Signup:</legend>
     <label for ="Name">Enter Name</label><br>
     <input type="text" placeholder="Name" id="Name" name ="Name"> 
@@ -48,15 +49,16 @@
     </fielsdet>
     </form>
 
+<!--insert and recording of data-->
+
 	<?php
-    // insert and recording of data
     
 	if ($_SERVER["REQUEST_METHOD"] == "POST") 
 	{
 		$servername = "192.168.150.213";
 		$username = "webprogmi211";
 		$password = "j@zzyAngle30";
-		$dbname = "lvlim_MyGuests";
+		$dbname = "lvlim_MySQL";
 
         $Name = $_POST['Name'];
         $username = $_POST['username'];
@@ -76,12 +78,11 @@
 		}
 
             else{
-            $stmt = $con->query("INSERT INTO signup(Name, username, email, password, number, date, gender)
+            $stmt = $con->query("INSERT INTO lvlim_MySQL(Name, username, email, password, number, date, gender)
                 values(?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssiss",$Name, $username, $email, $password, 
-            $number, $date, $gender);
+            $stmt->bind_param("ssssiss",$Name, $username, $email, $password, $number, $date, $gender);
             $stmt->execute();
-            echo "Sign up successful";
+                echo "Sign up successful";
             $stmt->close();
             $con->close();
         }
