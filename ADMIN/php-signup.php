@@ -48,10 +48,9 @@
     </fielsdet>
     </form>
 
-
-
 	<?php
-    // insert and recording of data	
+    // insert and recording of data
+    
 	if ($_SERVER["REQUEST_METHOD"] == "POST") 
 	{
 		$servername = "192.168.150.213";
@@ -69,10 +68,13 @@
 
     // Making Connection with database
 
-        $con = new mysqli('localhost','root','','phpdata');
-        if ($con -> connect_error) {
-        die('Connection failed :'.$conn -> connect_error);
-        }
+        // Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+		  die("Connection failed: " . $conn->connect_error);
+		}
+
             else{
             $stmt = $con->query("INSERT INTO signup(Name, username, email, password, number, date, gender)
                 values(?,?,?,?,?,?,?)");
