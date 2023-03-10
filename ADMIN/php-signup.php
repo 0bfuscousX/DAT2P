@@ -91,17 +91,16 @@
 		  die("Connection failed: " . $conn->connect_error);
 		}
 
-            else{
-            $stmt = $con->query("INSERT INTO lvlim_MySQL(Name, username, email, password, number, date, gender)
-                values(?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssiss",$Name, $username, $email, $password, $number, $date, $gender);
-            $stmt->execute();
-                echo "Sign up successful";
-            $stmt->close();
-            $con->close();
-        }
-    }
+        $sql = "INSERT INTO lvlim_MyGuests (Name, username, email, password, number, date, gender)
+		VALUES ('$Name', '$username', '$email', '$password', '$number', '$date', '$gender')";
 
+		if ($conn->query($sql) === TRUE) {
+		  echo "<br>Sign up successful!";
+            } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+	}
+	$conn->close();
      ?>
     
     </body>
